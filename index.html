@@ -3,247 +3,231 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fora da Caixa</title>
+<meta name="theme-color" content="#05070d">
+<meta name="description" content="Fora da Caixa — entretenimento, praticidade e muito mais.">
+<title>Fora da Caixa | Entretenimento sem complicação</title>
 
 <style>
+:root{
+  --bg:#03050a;
+  --card:#080d16;
+  --card2:#0b1220;
+  --blue:#00a8ff;
+  --blue2:#006dff;
+  --white:#f7fbff;
+  --muted:#9aa8b8;
+  --line:rgba(0,157,255,.35);
+  --shadow:0 20px 60px rgba(0,115,255,.12);
+}
 *{box-sizing:border-box;margin:0;padding:0}
-
+html{scroll-behavior:smooth}
 body{
-font-family:Arial,sans-serif;
-background:#03070d;
-color:#fff;
-line-height:1.5
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(0,150,255,.10),transparent 28rem),
+    radial-gradient(circle at 90% 20%,rgba(0,90,255,.08),transparent 30rem),
+    var(--bg);
+  color:var(--white);
+  overflow-x:hidden;
 }
+a{text-decoration:none;color:inherit}
+.container{width:min(1180px,calc(100% - 32px));margin:auto}
 
+/* HEADER */
 header{
-position:sticky;
-top:0;
-z-index:10;
-background:rgba(3,7,13,.95);
-border-bottom:1px solid #12324d
+  position:sticky;top:0;z-index:50;
+  background:rgba(3,5,10,.78);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav{
+  min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.brand{font-weight:950;font-size:22px;letter-spacing:-.7px}
+.brand span{color:var(--blue)}
+.navlinks{display:flex;gap:26px;color:#cbd5e1;font-size:14px}
+.navlinks a{transition:.2s}.navlinks a:hover{color:var(--blue)}
+.navbtn{
+  padding:11px 16px;border-radius:12px;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  font-weight:800;font-size:13px;
+  box-shadow:0 8px 30px rgba(0,125,255,.22);
 }
 
-nav{
-max-width:1100px;
-margin:auto;
-padding:16px 20px;
-display:flex;
-align-items:center;
-justify-content:space-between
+/* HERO */
+.hero{padding:64px 0 42px}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:52px}
+.kicker{
+  display:inline-flex;gap:8px;align-items:center;
+  padding:8px 12px;border:1px solid rgba(0,168,255,.3);
+  border-radius:999px;background:rgba(0,168,255,.07);
+  color:#7bd5ff;font-size:12px;font-weight:850;
+  animation:float 4s ease-in-out infinite;
 }
-
-.logo{
-font-size:25px;
-font-weight:900
+.hero h1{
+  font-size:clamp(44px,6vw,78px);line-height:.96;
+  letter-spacing:-4px;margin:20px 0 22px;
 }
-
-.logo span{color:#009cff}
-
-nav a{
-color:#fff;
-text-decoration:none;
-margin-left:18px;
-font-size:14px
+.hero h1 span{
+  color:transparent;
+  background:linear-gradient(90deg,#fff,var(--blue),#63c9ff);
+  -webkit-background-clip:text;background-clip:text;
 }
-
-.hero{
-max-width:1100px;
-margin:auto;
-padding:80px 20px;
-text-align:center
-}
-
-.badge{
-display:inline-block;
-padding:7px 14px;
-border:1px solid #087dcc;
-border-radius:30px;
-color:#45baff;
-font-size:12px;
-margin-bottom:20px
-}
-
-h1{
-font-size:clamp(42px,8vw,70px);
-line-height:1;
-margin-bottom:20px
-}
-
-h1 span{color:#009cff}
-
-.hero p{
-max-width:600px;
-margin:auto;
-color:#91a1b0;
-font-size:17px
-}
-
+.hero p{color:var(--muted);line-height:1.7;max-width:580px;font-size:16px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
 .btn{
-display:inline-block;
-margin-top:28px;
-padding:14px 23px;
-border-radius:10px;
-background:#008cff;
-color:#fff;
-text-decoration:none;
-font-weight:bold
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 19px;border-radius:13px;font-weight:850;font-size:14px;
+  transition:.25s;cursor:pointer
+}
+.primary{background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:0 12px 35px rgba(0,125,255,.22)}
+.secondary{border:1px solid rgba(0,168,255,.35);background:#07101b;color:#dcecff}
+.btn:hover{transform:translateY(-3px)}
+
+.hero-art{
+  position:relative;border-radius:30px;padding:12px;
+  border:1px solid rgba(0,157,255,.38);
+  background:linear-gradient(145deg,rgba(0,140,255,.12),rgba(255,255,255,.02));
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.hero-art:before{
+  content:"";position:absolute;inset:-30%;background:conic-gradient(from 0deg,transparent 0 65%,rgba(0,168,255,.16),transparent 80%);
+  animation:spin 12s linear infinite;
+}
+.hero-art img{position:relative;width:100%;display:block;border-radius:22px}
+.floating{
+  position:absolute;right:24px;bottom:24px;
+  padding:12px 14px;border-radius:14px;
+  background:rgba(3,7,14,.86);border:1px solid rgba(0,168,255,.4);
+  backdrop-filter:blur(12px);font-size:12px;font-weight:800;
 }
 
-section{
-max-width:1100px;
-margin:auto;
-padding:65px 20px
+/* TRUST */
+.trust{padding:22px 0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.trust-card{text-align:center;padding:12px;color:#dce8f5;font-size:13px;font-weight:800}
+.trust-card small{display:block;color:#708094;font-weight:500;margin-top:4px}
+
+/* SECTION */
+section{padding:82px 0}
+.heading{text-align:center;margin-bottom:38px}
+.heading .eyebrow{color:#57c7ff;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
+.heading h2{font-size:clamp(30px,4vw,46px);letter-spacing:-2px;margin:9px 0}
+.heading p{color:var(--muted);font-size:14px}
+
+/* PRODUCTS */
+.filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.filter{
+  border:1px solid rgba(255,255,255,.08);background:#070b12;color:#aebbd0;
+  padding:9px 13px;border-radius:999px;cursor:pointer;font-weight:750;font-size:12px
 }
-
-.title{
-text-align:center;
-margin-bottom:35px
+.filter.active,.filter:hover{border-color:var(--blue);color:#fff;background:rgba(0,157,255,.09)}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.product{
+  position:relative;overflow:hidden;min-height:280px;
+  padding:18px;border-radius:19px;
+  border:1px solid rgba(0,145,255,.28);
+  background:
+    radial-gradient(circle at 50% 0,rgba(0,157,255,.12),transparent 45%),
+    linear-gradient(145deg,#0a111c,#050810);
+  transition:.3s;
 }
-
-.title h2{font-size:35px}
-.title p{color:#81909e;margin-top:8px}
-
-.products{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px
+.product:after{
+  content:"";position:absolute;width:100px;height:100px;border-radius:50%;
+  right:-55px;top:-55px;background:rgba(0,157,255,.08);filter:blur(2px)
 }
-
-.card{
-background:linear-gradient(145deg,#091625,#050a11);
-border:1px solid #0b4d7d;
-border-radius:16px;
-padding:20px;
-transition:.2s
-}
-
-.card:hover{
-transform:translateY(-4px);
-border-color:#00a2ff
-}
-
+.product:hover{transform:translateY(-7px);border-color:#009fff;box-shadow:0 18px 45px rgba(0,115,255,.16)}
+.product.hidden{display:none}
 .icon{
-font-size:32px;
-margin-bottom:15px
+  width:62px;height:62px;border-radius:17px;display:flex;align-items:center;justify-content:center;
+  background:#03070d;border:1px solid rgba(0,157,255,.35);
+  font-weight:950;font-size:22px;color:#fff;margin-bottom:17px;
+  box-shadow:inset 0 0 24px rgba(0,130,255,.08)
 }
-
-.card h3{
-font-size:17px;
-margin-bottom:6px
-}
-
-.card p{
-font-size:12px;
-color:#8c9baa;
-min-height:38px
-}
-
+.netflix{color:#e50914}.prime{color:#45c5ff}.hbo{color:#b55cff}.disney{color:#65baff}
+.canva{color:#50e5d2}.globo{color:#ff4d45}.crunchy{color:#ff8b1f}.paramount{color:#36a5ff}
+.claro{color:#ff3434}.esim{color:#34d7ff}.booyah{color:#ffbd17}.capcut{color:#fff}
+.deezer{color:#45d2a1}.iptv{color:#20bfff}.star{color:#fff}
+.product h3{font-size:16px;line-height:1.25;margin-bottom:7px}
+.product p{color:#8998aa;font-size:11px;line-height:1.5;min-height:34px}
 .price{
-font-size:24px;
-font-weight:900;
-margin:16px 0
+  display:flex;align-items:end;gap:5px;margin-top:16px;
+  font-size:24px;font-weight:950;letter-spacing:-1px
 }
-
+.price small{font-size:10px;color:#708094;letter-spacing:0;font-weight:600}
 .buy{
-width:100%;
-padding:11px;
-border:1px solid #078ee9;
-border-radius:8px;
-background:#061b2c;
-color:#4cbeff;
-font-weight:bold;
-cursor:pointer
+  width:100%;margin-top:14px;padding:10px;border-radius:10px;
+  border:1px solid rgba(0,157,255,.4);background:rgba(0,125,255,.08);
+  color:#7ed5ff;font-weight:850;cursor:pointer;transition:.2s
 }
+.buy:hover{background:#007dff;color:white}
 
-.buy:hover{
-background:#008cff;
-color:#fff
-}
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{padding:26px;border-radius:19px;background:#070d16;border:1px solid rgba(255,255,255,.07)}
+.stepno{font-size:12px;font-weight:900;color:#55caff;margin-bottom:20px}
+.step h3{font-size:18px;margin-bottom:8px}.step p{color:#8290a1;font-size:13px;line-height:1.6}
 
-.steps{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px
-}
-
-.step{
-padding:25px;
-background:#07111d;
-border:1px solid #103c5c;
-border-radius:16px
-}
-
-.number{
-font-size:22px;
-font-weight:bold;
-color:#009cff;
-margin-bottom:10px
-}
-
-.step p{
-color:#8493a1;
-font-size:14px;
-margin-top:7px
-}
-
+/* CTA */
 .cta{
-margin:30px auto 70px;
-max-width:1000px;
-padding:55px 20px;
-text-align:center;
-background:radial-gradient(circle,#07375d,#050a11 65%);
-border:1px solid #09649c;
-border-radius:22px
+  margin:15px 0 70px;padding:62px 24px;text-align:center;border-radius:28px;
+  border:1px solid rgba(0,157,255,.35);
+  background:
+    radial-gradient(circle at 50% 0,rgba(0,157,255,.2),transparent 55%),
+    #060b13;
+  box-shadow:var(--shadow)
 }
+.cta h2{font-size:clamp(30px,4vw,48px);letter-spacing:-2px;margin-bottom:10px}
+.cta p{color:#8998aa;margin-bottom:24px}
 
-.cta h2{font-size:34px}
-.cta p{color:#8797a6;margin-top:8px}
-
-footer{
-text-align:center;
-padding:40px 20px;
-border-top:1px solid #10283d;
-color:#687887;
-font-size:12px
+/* FAQ */
+.faq{max-width:780px;margin:auto}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.08)}
+.question{
+  width:100%;background:none;border:0;color:#fff;text-align:left;
+  padding:20px 0;display:flex;justify-content:space-between;cursor:pointer;font-weight:800;font-size:14px
 }
+.answer{display:grid;grid-template-rows:0fr;transition:.3s}
+.answer>div{overflow:hidden;color:#8795a7;font-size:13px;line-height:1.6}
+.faq-item.open .answer{grid-template-rows:1fr}
+.faq-item.open .plus{transform:rotate(45deg)}
+.plus{transition:.25s;color:var(--blue);font-size:21px}
 
-footer strong{
-font-size:21px;
-color:#fff
-}
+/* FOOTER */
+footer{border-top:1px solid rgba(255,255,255,.07);padding:38px 0 55px;color:#667487;text-align:center;font-size:12px}
+footer b{color:white;font-size:19px} footer b span{color:var(--blue)}
 
-footer span{color:#009cff}
-
+/* WHATSAPP */
 .whatsapp{
-position:fixed;
-right:18px;
-bottom:18px;
-width:58px;
-height:58px;
-border-radius:50%;
-background:#25d366;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-text-decoration:none;
-z-index:20
+  position:fixed;right:19px;bottom:19px;z-index:60;width:58px;height:58px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:26px;
+  background:#25d366;color:white;box-shadow:0 12px 35px rgba(37,211,102,.3);
+  animation:pulse 2.4s infinite
 }
 
-@media(max-width:850px){
-.products{grid-template-columns:repeat(2,1fr)}
-.steps{grid-template-columns:1fr}
-nav a{display:none}
-}
+/* ANIMATIONS */
+@keyframes float{50%{transform:translateY(-5px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{box-shadow:0 12px 35px rgba(37,211,102,.28)}50%{box-shadow:0 12px 45px rgba(37,211,102,.5)}}
 
-@media(max-width:500px){
-.products{grid-template-columns:1fr 1fr;gap:9px}
-.card{padding:14px}
-.card h3{font-size:14px}
-.card p{font-size:10px}
-.price{font-size:19px}
-.buy{font-size:11px}
-.hero{padding:60px 18px}
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr}.hero-copy{text-align:center}.hero p{margin:auto}
+  .actions{justify-content:center}.products{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:720px){
+  .navlinks{display:none}.nav{min-height:64px}.navbtn{padding:10px 12px}
+  .hero{padding-top:42px}.hero h1{letter-spacing:-2.5px}
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .products{grid-template-columns:repeat(2,1fr);gap:10px}
+  .product{padding:14px;min-height:265px}.icon{width:50px;height:50px;font-size:17px}
+  .product h3{font-size:14px}.price{font-size:20px}
+  .steps{grid-template-columns:1fr}
+}
+@media(max-width:420px){
+  .container{width:min(100% - 22px,1180px)}
+  .products{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:42px}.floating{right:14px;bottom:14px}
 }
 </style>
 </head>
@@ -251,290 +235,269 @@ nav a{display:none}
 <body>
 
 <header>
-<nav>
-<div class="logo">FORA DA <span>CAIXA</span></div>
-
-<div>
-<a href="#inicio">Início</a>
-<a href="#produtos">Produtos</a>
-<a href="#como">Como funciona</a>
-<a href="#contato">Contato</a>
-</div>
-</nav>
+  <div class="container nav">
+    <a class="brand" href="#inicio">FORA <span>DA CAIXA</span></a>
+    <nav class="navlinks">
+      <a href="#inicio">Início</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#como">Como funciona</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="navbtn" href="https://wa.me/5573981274342?text=Ol%C3%A1!%20Vim%20pelo%20site%20Fora%20da%20Caixa." target="_blank">WhatsApp</a>
+  </div>
 </header>
 
-<main>
+<main id="inicio">
 
-<section class="hero" id="inicio">
-
-<div class="badge">⚡ ATENDIMENTO RÁPIDO</div>
-
-<h1>
-Sua experiência<br>
-<span>fora da caixa.</span>
-</h1>
-
-<p>
-Produtos e serviços digitais com atendimento rápido,
-prático e direto pelo WhatsApp.
-</p>
-
-<a class="btn"
-href="https://wa.me/5573981274342"
-target="_blank">
-💬 Falar no WhatsApp
-</a>
-
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="kicker">✨ Entretenimento, praticidade e muito mais</div>
+      <h1>Saia do comum.<br><span>Fique Fora da Caixa.</span></h1>
+      <p>Assinaturas, entretenimento e serviços digitais em um só lugar. Escolha seu produto, confira o preço e fale com a gente pelo WhatsApp.</p>
+      <div class="actions">
+        <a class="btn primary" href="#produtos">Ver produtos →</a>
+        <a class="btn secondary" href="https://wa.me/5573981274342?text=Ol%C3%A1!%20Vim%20pelo%20site%20Fora%20da%20Caixa." target="_blank">💬 Falar no WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="logo.png" alt="Fora da Caixa — produtos de entretenimento">
+      <div class="floating">⚡ Atendimento rápido pelo WhatsApp</div>
+    </div>
+  </div>
 </section>
 
+<div class="trust">
+  <div class="container trust-grid">
+    <div class="trust-card">⚡ Ativação rápida<small>Praticidade na compra</small></div>
+    <div class="trust-card">🛡️ Seguro e confiável<small>Atendimento direto</small></div>
+    <div class="trust-card">💬 Suporte rápido<small>Fale com a gente</small></div>
+    <div class="trust-card">🔒 Pagamento facilitado<small>Consulte as opções</small></div>
+  </div>
+</div>
+
 <section id="produtos">
+  <div class="container">
+    <div class="heading">
+      <div class="eyebrow">Catálogo</div>
+      <h2>Escolha o que combina com você</h2>
+      <p>Preços conforme a tabela enviada. Valores com “+” indicam que podem variar conforme a opção escolhida.</p>
+    </div>
 
-<div class="title">
-<h2>Produtos e serviços</h2>
-<p>Escolha uma opção e faça seu pedido.</p>
-</div>
+    <div class="filters">
+      <button class="filter active" data-filter="all">Todos</button>
+      <button class="filter" data-filter="streaming">Streaming</button>
+      <button class="filter" data-filter="criacao">Criação</button>
+      <button class="filter" data-filter="games">Games</button>
+      <button class="filter" data-filter="outros">Outros</button>
+    </div>
 
-<div class="products">
+    <div class="products">
 
-<div class="card">
-<div class="icon">🎬</div>
-<h3>Netflix 4K</h3>
-<p>Filmes, séries e muito mais.</p>
-<div class="price">R$ 13,99+</div>
-<button class="buy" onclick="comprar('Netflix 4K - R$ 13,99+')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon netflix">N</div><h3>Netflix 4K</h3>
+        <p>Filmes, séries e muito mais!</p><div class="price">R$ 13,99<small>+</small></div>
+        <button class="buy" onclick="comprar('Netflix 4K — R$ 13,99+')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">▶️</div>
-<h3>Prime Video</h3>
-<p>Grandes histórias em um só lugar.</p>
-<div class="price">R$ 8,99</div>
-<button class="buy" onclick="comprar('Prime Video - R$ 8,99')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon prime">▶</div><h3>Prime Video</h3>
+        <p>Grandes histórias, em um só lugar!</p><div class="price">R$ 8,99</div>
+        <button class="buy" onclick="comprar('Prime Video — R$ 8,99')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">🎞️</div>
-<h3>HBO Max</h3>
-<p>Séries, filmes e produções exclusivas.</p>
-<div class="price">R$ 10,99+</div>
-<button class="buy" onclick="comprar('HBO Max - R$ 10,99+')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon hbo">MAX</div><h3>HBO Max</h3>
+        <p>Séries, filmes e produções exclusivas!</p><div class="price">R$ 10,99<small>+</small></div>
+        <button class="buy" onclick="comprar('HBO Max — R$ 10,99+')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">🏰</div>
-<h3>Disney Plus</h3>
-<p>Filmes, séries e entretenimento.</p>
-<div class="price">R$ 9,50+</div>
-<button class="buy" onclick="comprar('Disney Plus - R$ 9,50+')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon disney">D+</div><h3>Disney Plus</h3>
+        <p>Os melhores filmes, séries e o mundo da Disney!</p><div class="price">R$ 9,50<small>+</small></div>
+        <button class="buy" onclick="comprar('Disney Plus — R$ 9,50+')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">🎨</div>
-<h3>Canva Pro</h3>
-<p>Crie e edite seus projetos.</p>
-<div class="price">R$ 9,99</div>
-<button class="buy" onclick="comprar('Canva Pro - R$ 9,99')">Comprar</button>
-</div>
+      <article class="product" data-cat="criacao">
+        <div class="icon canva">Canva</div><h3>Canva Pro</h3>
+        <p>Crie, edite e desenvolva seus projetos!</p><div class="price">R$ 9,99</div>
+        <button class="buy" onclick="comprar('Canva Pro — R$ 9,99')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">📺</div>
-<h3>Globoplay</h3>
-<p>Novelas, séries, esportes e muito mais.</p>
-<div class="price">R$ 9,50+</div>
-<button class="buy" onclick="comprar('Globoplay - R$ 9,50+')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon globo">g</div><h3>Globoplay</h3>
+        <p>Novelas, séries, esportes e muito mais!</p><div class="price">R$ 9,50<small>+</small></div>
+        <button class="buy" onclick="comprar('Globoplay — R$ 9,50+')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">🍥</div>
-<h3>Crunchyroll</h3>
-<p>Animes, séries e filmes.</p>
-<div class="price">R$ 7,90</div>
-<button class="buy" onclick="comprar('Crunchyroll - R$ 7,90')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon crunchy">C</div><h3>Crunchyroll</h3>
+        <p>Animes, séries e filmes do mundo todo!</p><div class="price">R$ 7,90</div>
+        <button class="buy" onclick="comprar('Crunchyroll — R$ 7,90')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">⭐</div>
-<h3>Paramount+</h3>
-<p>Filmes, séries e grandes produções.</p>
-<div class="price">R$ 7,85</div>
-<button class="buy" onclick="comprar('Paramount+ - R$ 7,85')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon paramount">P+</div><h3>Paramount+</h3>
+        <p>Grandes lançamentos e clássicos!</p><div class="price">R$ 7,85</div>
+        <button class="buy" onclick="comprar('Paramount+ — R$ 7,85')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">📺</div>
-<h3>Pacote Completo</h3>
-<p>Claro TV + Globoplay + Premiere + Disney+ + HBO.</p>
-<div class="price">R$ 32,90</div>
-<button class="buy" onclick="comprar('Pacote Claro TV + Globoplay + Premiere + Disney+ + HBO - R$ 32,90')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon claro">CLARO</div><h3>Claro TV + Globoplay + Premiere + Disney+ + HBO</h3>
+        <p>Tudo em um só pacote!</p><div class="price">R$ 32,90</div>
+        <button class="buy" onclick="comprar('Claro TV + Globoplay + Premiere + Disney+ + HBO — R$ 32,90')">Comprar pacote</button>
+      </article>
 
-<div class="card">
-<div class="icon">📱</div>
-<h3>E-SIM</h3>
-<p>Número virtual e conectividade.</p>
-<div class="price">R$ 43,00+</div>
-<button class="buy" onclick="comprar('E-SIM - R$ 43,00+')">Comprar</button>
-</div>
+      <article class="product" data-cat="outros">
+        <div class="icon esim">eSIM</div><h3>E-SIM</h3>
+        <p>Número virtual e internet em qualquer lugar.</p><div class="price">R$ 43,00<small>+</small></div>
+        <button class="buy" onclick="comprar('E-SIM — R$ 43,00+')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">🎮</div>
-<h3>Passe Booyah Premium</h3>
-<p>Recompensas e benefícios.</p>
-<div class="price">R$ 14,00</div>
-<button class="buy" onclick="comprar('Passe Booyah Premium - R$ 14,00')">Comprar</button>
-</div>
+      <article class="product" data-cat="games">
+        <div class="icon booyah">BOOYAH!</div><h3>Passe Booyah Premium</h3>
+        <p>Skins, recompensas e muito mais!</p><div class="price">R$ 14,00</div>
+        <button class="buy" onclick="comprar('Passe Booyah Premium — R$ 14,00')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">✂️</div>
-<h3>CapCut Pro</h3>
-<p>Edição de vídeos e conteúdos.</p>
-<div class="price">R$ 11,00+</div>
-<button class="buy" onclick="comprar('CapCut Pro - R$ 11,00+')">Comprar</button>
-</div>
+      <article class="product" data-cat="criacao">
+        <div class="icon capcut">✂</div><h3>CapCut Pro</h3>
+        <p>Edição profissional sem limites!</p><div class="price">R$ 11,00<small>+</small></div>
+        <button class="buy" onclick="comprar('CapCut Pro — R$ 11,00+')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">🎵</div>
-<h3>Deezer Premium</h3>
-<p>Música sem limites.</p>
-<div class="price">R$ 11,50</div>
-<button class="buy" onclick="comprar('Deezer Premium - R$ 11,50')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon deezer">deez</div><h3>Deezer Premium</h3>
+        <p>Músicas sem limites, onde você estiver!</p><div class="price">R$ 11,50</div>
+        <button class="buy" onclick="comprar('Deezer Premium — R$ 11,50')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">📡</div>
-<h3>Login IPTV</h3>
-<p>Consulte disponibilidade e condições.</p>
-<div class="price">R$ 16,99+</div>
-<button class="buy" onclick="comprar('Login IPTV - R$ 16,99+')">Comprar</button>
-</div>
+      <article class="product" data-cat="outros">
+        <div class="icon iptv">▶</div><h3>Login IPTV</h3>
+        <p>Canais ao vivo, filmes e séries!</p><div class="price">R$ 16,99<small>+</small></div>
+        <button class="buy" onclick="comprar('Login IPTV — R$ 16,99+')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">⭐</div>
-<h3>Disney+ Star</h3>
-<p>Mais conteúdo para você.</p>
-<div class="price">R$ 11,99+</div>
-<button class="buy" onclick="comprar('Disney+ Star - R$ 11,99+')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon star">D+ ★</div><h3>Disney+ Star</h3>
+        <p>Mais conteúdo, mais emoção!</p><div class="price">R$ 11,99<small>+</small></div>
+        <button class="buy" onclick="comprar('Disney+ Star — R$ 11,99+')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">📺</div>
-<h3>HBO Max — Tela</h3>
-<p>Entretenimento na sua tela.</p>
-<div class="price">R$ 12,50+</div>
-<button class="buy" onclick="comprar('HBO Max Tela - R$ 12,50+')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon hbo">MAX</div><h3>HBO Max — Tela</h3>
+        <p>Assista na tela do seu jeito!</p><div class="price">R$ 12,50<small>+</small></div>
+        <button class="buy" onclick="comprar('HBO Max Tela — R$ 12,50+')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">🍥</div>
-<h3>Tela Crunchyroll</h3>
-<p>Seu anime favorito na tela.</p>
-<div class="price">R$ 11,99</div>
-<button class="buy" onclick="comprar('Tela Crunchyroll - R$ 11,99')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon crunchy">C</div><h3>Tela Crunchyroll</h3>
+        <p>Seu anime favorito na tela!</p><div class="price">R$ 11,99</div>
+        <button class="buy" onclick="comprar('Tela Crunchyroll — R$ 11,99')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">🎬</div>
-<h3>Tela Netflix 4K</h3>
-<p>Qualidade máxima na sua tela.</p>
-<div class="price">R$ 21,50</div>
-<button class="buy" onclick="comprar('Tela Netflix 4K - R$ 21,50')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon netflix">N</div><h3>Tela Netflix 4K</h3>
+        <p>Qualidade máxima em sua tela!</p><div class="price">R$ 21,50</div>
+        <button class="buy" onclick="comprar('Tela Netflix 4K — R$ 21,50')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">📺</div>
-<h3>Claro TV</h3>
-<p>Canais, filmes e séries.</p>
-<div class="price">R$ 16,50+</div>
-<button class="buy" onclick="comprar('Claro TV - R$ 16,50+')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon claro">CLARO</div><h3>Claro TV</h3>
+        <p>Canais, filmes, séries e muito mais!</p><div class="price">R$ 16,50<small>+</small></div>
+        <button class="buy" onclick="comprar('Claro TV — R$ 16,50+')">Comprar</button>
+      </article>
 
-<div class="card">
-<div class="icon">⚽</div>
-<h3>Tela Premiere Play</h3>
-<p>Futebol e esportes.</p>
-<div class="price">R$ 12,50</div>
-<button class="buy" onclick="comprar('Tela Premiere Play - R$ 12,50')">Comprar</button>
-</div>
+      <article class="product" data-cat="streaming">
+        <div class="icon paramount">▶</div><h3>Tela Premiere Play</h3>
+        <p>Futebol e esportes ao vivo!</p><div class="price">R$ 12,50</div>
+        <button class="buy" onclick="comprar('Tela Premiere Play — R$ 12,50')">Comprar</button>
+      </article>
 
-</div>
+    </div>
+  </div>
 </section>
 
 <section id="como">
-
-<div class="title">
-<h2>Como funciona?</h2>
-<p>Comprar na Fora da Caixa é simples.</p>
-</div>
-
-<div class="steps">
-
-<div class="step">
-<div class="number">01</div>
-<h3>Escolha</h3>
-<p>Escolha o produto ou serviço desejado.</p>
-</div>
-
-<div class="step">
-<div class="number">02</div>
-<h3>Chame no WhatsApp</h3>
-<p>Clique em comprar e envie seu pedido.</p>
-</div>
-
-<div class="step">
-<div class="number">03</div>
-<h3>Finalize</h3>
-<p>Converse com o atendimento para confirmar disponibilidade, valor e condições.</p>
-</div>
-
-</div>
+  <div class="container">
+    <div class="heading">
+      <div class="eyebrow">É fácil</div>
+      <h2>Como funciona?</h2>
+      <p>Do catálogo para o WhatsApp em poucos segundos.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="stepno">01 / ESCOLHA</div><h3>Encontre seu produto</h3><p>Veja o catálogo, compare os serviços e escolha o que deseja.</p></div>
+      <div class="step"><div class="stepno">02 / PEDIDO</div><h3>Clique em comprar</h3><p>O WhatsApp abre com uma mensagem pronta contendo o produto escolhido.</p></div>
+      <div class="step"><div class="stepno">03 / ATENDIMENTO</div><h3>Fale com a equipe</h3><p>Confirme disponibilidade, condições e finalize seu pedido pelo atendimento.</p></div>
+    </div>
+  </div>
 </section>
 
-<div class="cta" id="contato">
-
-<h2>Ficou com alguma dúvida?</h2>
-
-<p>
-Nossa equipe está pronta para atender você.
-</p>
-
-<a class="btn"
-href="https://wa.me/5573981274342"
-target="_blank">
-💬 Chamar no WhatsApp
-</a>
-
+<div class="container">
+  <div class="cta">
+    <h2>Qualquer dúvida?<br>É só chamar. 💙</h2>
+    <p>Estamos a uma mensagem de distância.</p>
+    <a class="btn primary" href="https://wa.me/5573981274342?text=Ol%C3%A1!%20Vim%20pelo%20site%20Fora%20da%20Caixa." target="_blank">💬 Chamar no WhatsApp</a>
+  </div>
 </div>
+
+<section id="faq">
+  <div class="container">
+    <div class="heading">
+      <div class="eyebrow">Ajuda</div>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="question">Como faço um pedido?<span class="plus">+</span></button>
+        <div class="answer"><div>Escolha o produto e toque em “Comprar”. O WhatsApp será aberto com a mensagem do pedido já preenchida.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="question">Os preços são os mesmos da tabela?<span class="plus">+</span></button>
+        <div class="answer"><div>Sim. Os valores exibidos nesta versão foram colocados conforme a tabela enviada. Os itens com “+” podem ter variação conforme a opção escolhida.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="question">Posso tirar dúvidas antes de comprar?<span class="plus">+</span></button>
+        <div class="answer"><div>Sim. O atendimento pelo WhatsApp pode confirmar disponibilidade, condições e informações do produto antes da compra.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 </main>
 
 <footer>
-<strong>FORA DA <span>CAIXA</span></strong>
-<br><br>
-Sua experiência fora do comum.
-<br><br>
-© 2026 Fora da Caixa
+  <div class="container">
+    <b>FORA <span>DA CAIXA</span></b>
+    <p style="margin-top:10px">Entretenimento, praticidade e muito mais.</p>
+    <p style="margin-top:12px">© 2026 Fora da Caixa. Todos os direitos reservados.</p>
+  </div>
 </footer>
 
-<a class="whatsapp"
-href="https://wa.me/5573981274342"
-target="_blank">
-💬
-</a>
+<a class="whatsapp" href="https://wa.me/5573981274342?text=Ol%C3%A1!%20Vim%20pelo%20site%20Fora%20da%20Caixa." target="_blank" aria-label="WhatsApp">💬</a>
 
 <script>
+const numero = "5573981274342";
+
 function comprar(produto){
-
-const mensagem =
-"Olá! Vim pelo site da Fora da Caixa e tenho interesse em: "
-+ produto +
-". Pode me passar mais informações?";
-
-const url =
-"https://wa.me/5573981274342?text="
-+ encodeURIComponent(mensagem);
-
-window.open(url,"_blank");
+  const mensagem = "Olá! Vim pelo site Fora da Caixa e tenho interesse em: " + produto + ". Pode me passar mais informações?";
+  window.open("https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem), "_blank");
 }
+
+document.querySelectorAll(".filter").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const filtro=btn.dataset.filter;
+    document.querySelectorAll(".product").forEach(card=>{
+      card.classList.toggle("hidden", filtro!=="all" && card.dataset.cat!==filtro);
+    });
+  });
+});
+
+document.querySelectorAll(".question").forEach(q=>{
+  q.addEventListener("click",()=>q.parentElement.classList.toggle("open"));
+});
 </script>
 
 </body>
